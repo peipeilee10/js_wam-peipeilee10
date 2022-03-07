@@ -11,11 +11,11 @@
             margin: 0;
             padding: 0;
         }
-        
+
         body {
             background: linear-gradient(rgb(255, 222, 222) 40%, rgb(88, 186, 243) 100%);
         }
-        
+
         .container {
             height: 100vh;
             position: relative;
@@ -23,15 +23,14 @@
             justify-content: space-around;
             align-items: center;
         }
-        
+
         .logo {
             position: absolute;
-            width: 500px;
+            width: 30%;
             top: -10%;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 0;
         }
-        
+
         .left {
             height: 100%;
             width: 30%;
@@ -40,18 +39,18 @@
             justify-content: space-around;
             align-items: center;
         }
-        
+
         .findOut {
-            font-size: 4rem;
+            font-size: 3rem;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             color: rgb(204, 0, 255);
             text-shadow: 5px 5px 10px rgb(233, 163, 255);
             font-weight: bolder;
         }
-        
+
         #btn-start {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             font-size: 2rem;
             background-color: rgb(165, 11, 226);
@@ -59,89 +58,101 @@
             font-weight: bolder;
             cursor: pointer;
         }
-        
+
         #randomimg {
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
+            ;
             border-radius: 50%;
             border: 3px solid rgb(6, 33, 155);
             box-shadow: 0 0 10px 5px rgb(43, 5, 87);
         }
-        
+
         #game {
-            height: 100%;
+            height: 100vh;
             width: 40%;
             margin: auto;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
+
         .hole {
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             border: 4px solid rgba(91, 4, 204, 0.3);
         }
-        
+
+        @media(max-width:1280px) {
+            .hole {
+                width: 250px;
+                height: 175px;
+                border: 4px solid rgba(91, 4, 204, 0.3);
+            }
+        }
+
         #scoreboard {
             width: 30%;
             height: 100%;
             text-align: center;
             position: relative;
         }
-        
+
         .yourScore {
-            width: 500px;
             position: absolute;
-            top: 8%;
-            right: 0%;
-            font-size: 4rem;
+            top: 30%;
+            right: 15%;
+            font-size: 3rem;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             color: rgb(240, 151, 17);
             text-shadow: 5px 5px 10px rgb(241, 192, 117);
             font-weight: bolder;
         }
-        
+
         .scoreText {
             font-size: 1.5rem;
             font-family: "微軟正黑體";
             position: absolute;
             font-weight: bolder;
-            top: 50%;
-            right: 20%;
-            transform: translate(-50%, -50%);
+            bottom: 20%;
+            right: 30%;
         }
-        
+
+        .high {
+            text-align: left;
+
+        }
+
         .circle {
             background-image: url(./img/圓形.png);
             background-repeat: no-repeat;
             background-position: center;
         }
-        
+
         .square {
             background-image: url(./img/正方形.png);
             background-repeat: no-repeat;
             background-position: center;
         }
-        
+
         .triangle {
             background-image: url(./img/三角形.png);
             background-repeat: no-repeat;
             background-position: center;
         }
-        
+
         .circle-ok {
             background-image: url(./img/圓形ok.png);
             background-repeat: no-repeat;
             background-position: center;
         }
-        
+
         .square-ok {
             background-image: url(./img/正方形ok.png);
             background-repeat: no-repeat;
             background-position: center;
         }
-        
+
         .triangle-ok {
             background-image: url(./img/三角形-ok.png);
             background-repeat: no-repeat;
@@ -186,9 +197,9 @@
                 <span id="time">0</span>秒
                 <div class="high" style="color:rgb(32, 6, 82)">
                     <br> 最高分
-                    <br> 姓名:
-                    <span id=highName>???</span>
-                    <br> 分數:
+                    <br> 姓名：
+                    <span id=highName></span>
+                    <br> 分數：
                     <span id=highScore>0</span>
                 </div>
             </div>
@@ -221,11 +232,11 @@
 
         //顯示出資料庫的最高分
         const storage = JSON.parse(localStorage.getItem('hideAndFind'))
-            // 若資料庫有最高分將畫面中的最高分顯示
+        // 若資料庫有最高分將畫面中的最高分顯示
         if (storage) {
             high.name = storage.name;
             high.score = storage.score
-                // 顯示至畫面上
+            // 顯示至畫面上
             highNameText.innerText = high.name;
             highScoreText.innerText = high.score
         }
@@ -313,7 +324,7 @@
                 if (hole.classList.contains(nowimg)) {
                     // 把圖片換成藍色的
                     hole.classList.replace(nowimg, `${nowimg}-ok`)
-                        // 加分
+                    // 加分
                     score++
                     // 將分數顯示於畫面上
                     scoreText.innerText = score
